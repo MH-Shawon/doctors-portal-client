@@ -16,7 +16,7 @@ const Navbar = () =>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contactUs'>Contact Us</Link></li>
-        <li>{user ? <button class="btn btn-ghost" onClick={async () =>
+        <li>{user ? <button className="btn btn-ghost" onClick={async () =>
         {await 
         signOut(); }}> 
         Sign Out</button> : <Link to='/login'>Login</Link>}</li>
