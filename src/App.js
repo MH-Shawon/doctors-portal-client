@@ -6,6 +6,7 @@ import Appointment from './Pages/Appoinment/Appointment';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import RequireAuth from './Pages/Login/RequiredAuth/RequireAuth';
+import ResetPassword from './Pages/Login/ResetPassword/ResetPassword';
 import SignUp from './Pages/Login/SignUp';
 import Navbar from './Pages/Shared/Navbar';
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/resetpass' element={<ResetPassword />}></Route>
         <Route path='/appointment' element={<RequireAuth>
           <Appointment />
         </RequireAuth>}></Route>

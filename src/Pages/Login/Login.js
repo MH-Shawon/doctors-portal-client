@@ -104,7 +104,9 @@ const Login = () =>
               </label>
             </div>
             {signInError}
+            <p><small><Link className='text-accent' to='/resetpass'> Forgotten Password?</Link></small></p>
             <input className='btn btn-accent text-white w-full max-w-xs ' type="submit" value='Login' />
+
             <p><small>New to Doctors Portal? <Link className='text-accent' to='/signup'> Create an Account.</Link></small></p>
           </form>
 

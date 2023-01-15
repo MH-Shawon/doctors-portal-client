@@ -1,3 +1,4 @@
+import { sendEmailVerification } from 'firebase/auth';
 import React from 'react';
 
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -15,7 +16,7 @@ const SignUp = () =>
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword( auth );
+    ] = useCreateUserWithEmailAndPassword( auth, sendEmailVerification(true) );
 
     const [ updateProfile, updating, upError ] = useUpdateProfile( auth );
 
@@ -44,6 +45,7 @@ const SignUp = () =>
 
         await createUserWithEmailAndPassword( data.email, data.password );
         await updateProfile( { displayName: data.name});
+        
         
           navigate('/appointment')
     }
