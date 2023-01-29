@@ -1,10 +1,13 @@
-import React from 'react';
 
-const About = () => {
+const About = () =>
+{
+    
+
     return (
         <div>
-            <h4>This is my about</h4>
+            
         </div>
+
     );
 };
 

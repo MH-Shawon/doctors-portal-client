@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuthState, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../../firebase.init';
-import Loading from '../../Shared/Loading/Loading';
+
 
 const ResetPassword = () =>
 {
@@ -14,14 +14,15 @@ const ResetPassword = () =>
         sendPasswordResetEmail(user.email);
     }
     
-    const onSubmit = async ( ) =>{
-         const success = await sendPasswordResetEmail(user.email);
-         if(success){
-            alert('Reset Password')
-         }
-
+    const onSubmit = async () =>{
+      
+         await sendPasswordResetEmail(user.email);
+         
+         
          
     }
+
+    
     
     return (
         <div className="flex justify-center items-center">

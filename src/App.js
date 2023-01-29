@@ -9,8 +9,13 @@ import RequireAuth from './Pages/Login/RequiredAuth/RequireAuth';
 import ResetPassword from './Pages/Login/ResetPassword/ResetPassword';
 import SignUp from './Pages/Login/SignUp';
 import Navbar from './Pages/Shared/Navbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+
+
+function App ()
+{
   return (
     <div className='max-w-7xl mx-auto px-12'>
       <Navbar></Navbar>
@@ -23,8 +28,8 @@ function App() {
         <Route path='/appointment' element={<RequireAuth>
           <Appointment />
         </RequireAuth>}></Route>
-
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
