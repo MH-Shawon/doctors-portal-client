@@ -1,8 +1,9 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Loading/Loading';
 
 const Login = () =>
@@ -15,11 +16,18 @@ const Login = () =>
     loading,
     error,
   ] = useSignInWithEmailAndPassword( auth );
-  const  navigate = useNavigate();
-  const  location = useLocation();
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [token] = useToken(user || gUser);
 
   let from = location.state?.from?.pathname || "/";
-
+  useEffect(()=>{
+    if (token)
+    {
+      navigate( from, { replace: true } );
+    }
+  },[token, from, navigate])
   if ( loading || gLoading )
   {
 
@@ -30,17 +38,10 @@ const Login = () =>
 
   if ( error || gError )
   {
-    signInError = <p>{error?.message || gError?.message}</p>
+    signInError = <p> {error?.message || gError?.message}</p>
   }
-
-  if ( user || gUser )
-  {
-    navigate(from, { replace: true });
-  }
-
-  const onSubmit = ( data ) =>
-  {
-    console.log( data );
+const onSubmit = ( data ) =>
+  { 
     signInWithEmailAndPassword( data.email, data.password );
   }
 
@@ -53,15 +54,15 @@ const Login = () =>
           <h2 className="text-center text-2xl font-bold">Login</h2>
           <form onSubmit={handleSubmit( onSubmit )}>
 
-            <div class="form-control w-full max-w-xs">
-              <label class="label">
-                <span class="label-text">Email</span>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Email</span>
 
               </label>
               <input
                 type="email"
                 placeholder="Your Email"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register( "email", {
                   required: {
                     value: true,
@@ -73,20 +74,20 @@ const Login = () =>
                   }
                 } )}
               />
-              <label class="label">
+              <label className="label">
                 {errors.email?.type === 'required' && <p role="alert">{errors.email.message}</p>}
                 {errors.email?.type === 'pattern' && <p role="alert">{errors.email.message}</p>}
               </label>
             </div>
-            <div class="form-control w-full max-w-xs">
-              <label class="label">
-                <span class="label-text">Password</span>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Password</span>
 
               </label>
               <input
                 type="password"
                 placeholder="Password"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register( "password", {
                   required: {
                     value: true,
@@ -98,13 +99,16 @@ const Login = () =>
                   }
                 } )}
               />
-              <label class="label">
+              <label className="label">
                 {errors.password?.type === 'required' && <p role="alert">{errors.password.message}</p>}
                 {errors.password?.type === 'minLength' && <p role="alert">{errors.password.message}</p>}
               </label>
             </div>
+
             {signInError}
+
             <p><small><Link className='text-accent' to='/resetpass'> Forgotten Password?</Link></small></p>
+
             <input className='btn btn-accent text-white w-full max-w-xs ' type="submit" value='Login' />
 
             <p><small>New to Doctors Portal? <Link className='text-accent' to='/signup'> Create an Account.</Link></small></p>

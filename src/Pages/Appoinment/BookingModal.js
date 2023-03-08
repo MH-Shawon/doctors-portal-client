@@ -1,5 +1,3 @@
-
-import axios from 'axios';
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -42,7 +40,7 @@ const BookingModal = ( { selected, booking, setBooking,refetch } ) =>
                 if ( data.success )
                         {
         
-                            toast( `Appointment is set , ${formattedDate} at ${slot}`);
+                            toast.success( `Appointment is set , ${formattedDate} at ${slot}`);
                         }
                         else
                                 {
@@ -52,24 +50,6 @@ const BookingModal = ( { selected, booking, setBooking,refetch } ) =>
                             // to close modal 
                             setBooking( null );
             })
-            
-
-        // axios.post( 'http://localhost:5000/booking', ( booking ) )
-        //     .then( response =>
-        //     {
-
-        //         if ( response.data.success )
-        //         {
-
-        //             toast( `Appointment is set , ${ formattedDate } at ${ slot }` );
-        //         } else
-        //         {
-        //             toast.error( `Already have an Appointment on ${ response.data.booking?.date } at ${ response.data.booking?.slot }` );
-        //         }
-
-        //     // to close modal 
-        //     setBooking( null );
-        // } )
 
     }
     return (
@@ -77,9 +57,9 @@ const BookingModal = ( { selected, booking, setBooking,refetch } ) =>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <label for="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                    <h3 className='font-bold text-accent text-lg justify-items-center'>Booking for:{name}</h3>
+                    <h3 className='font-bold text-accent text-lg justify-items-center'>Booking htmlFor:{name}</h3>
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-2 justify-items-center mt-2'>
                         <input type="text" value={format( selected, 'PP' )} disabled className="input input-bordered w-full max-w-xs" />

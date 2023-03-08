@@ -31,12 +31,12 @@ const ResetPassword = () =>
           <h2 className="text-center text-2xl font-bold">Forget Password</h2>
           <form onSubmit={handleSubmit( onSubmit )}>
 
-            <div class="form-control w-full max-w-xs">
+            <div className="form-control w-full max-w-xs">
               
               <input
                 type="email"
                 placeholder="Provide Your Email"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register( "email", {
                   required: {
                     value: true,
@@ -48,7 +48,7 @@ const ResetPassword = () =>
                   }
                 } )}
               />
-              <label class="label">
+              <label className="label">
                 {errors.email?.type === 'required' && <p role="alert">{errors.email.message}</p>}
                 {errors.email?.type === 'pattern' && <p role="alert">{errors.email.message}</p>}
               </label>
