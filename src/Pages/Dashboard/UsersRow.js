@@ -22,7 +22,7 @@ const UsersRow = ( { user, index, refetch } ) =>
                 if ( data.modifiedCount > 0 )
                 {
                     refetch()
-                    toast.success( `Successfully make an admin` )
+                    toast.success( 'Successfully make an admin' )
                 }
 
             } )

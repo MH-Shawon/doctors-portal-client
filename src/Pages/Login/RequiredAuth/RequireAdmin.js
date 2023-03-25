@@ -17,7 +17,7 @@ const RequireAdmin = ({children}) => {
 
     const loggedInData = JSON.parse(localStorage.getItem("firebaseAuthInfo"));
 
-    if(!user || !admin && !loggedInData ){
+    if(!user && !admin && !loggedInData ){
         signOut(auth);
         return <Navigate to="/login" state={{ from: location }} replace />;
     }

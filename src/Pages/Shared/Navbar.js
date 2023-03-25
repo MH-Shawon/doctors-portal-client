@@ -12,7 +12,7 @@ const Navbar = () =>
     {
         await signOut();
         localStorage.removeItem( "firebaseAuthInfo" );
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem( 'accessToken' );
 
     }
 
@@ -22,14 +22,34 @@ const Navbar = () =>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contactUs'>Contact Us</Link></li>
-        
+
         {
             user && <li><Link to='/dashboard'>Dashboard</Link></li>
 
         }
-        <li>{user ? <button className="btn btn-ghost" onClick={() => signOutFun()}>
-            Sign Out</button> : <Link to='/login'>Login</Link>}</li>
+        <li>{user ? <div class="dropdown dropdown-bottom">
+            <label tabindex="0" class="m-1">
+
+            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+                    <div className="avatar">
+                        <div className="w-8 rounded-full">
+                            <img src={user.photoURL} alt='' />
+                        </div>
+                    </div>
+                </div>
+                 </label>
+            
+
+            <ul tabindex="0" class="dropdown-content rounded-box w-32 font-bold bg-accent   text-white mx-auto text-right">
+    <li>
+    <a  onClick={() => signOutFun()}>SIGN OUT</a>
+    </li>
+    
+  </ul>
+            </div> : <Link to='/login'>Login</Link>}
+            </li>
     </>
+
 
     return (
 
@@ -43,7 +63,10 @@ const Navbar = () =>
                         {menuItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Doctors Portal</a>
+                <div className="btn btn-ghost normal-case text-xl">
+                    Doctors Portal
+                </div>
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
