@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyAppointment = () =>
@@ -20,7 +20,7 @@ const MyAppointment = () =>
                 }
             } )
                 .then( res => {
-                    console.log('res', res);
+                    
                     if(res.status === 401 || res.status === 403){
                         navigate('/')
                         signOut(auth);
@@ -40,7 +40,6 @@ const MyAppointment = () =>
             <h3>My Appointment:{appointments.length}</h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
-                    {/* <!-- head --> */}
                     <thead>
                         <tr>
                             <th></th>
@@ -48,6 +47,7 @@ const MyAppointment = () =>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Treatment</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,6 +58,11 @@ const MyAppointment = () =>
                                 <td>{appo.date}</td>
                                 <td>{appo.slot}</td>
                                 <td>{appo.treatment}</td>
+                                <td>
+                                    {(appo.price && !appo.paid) && <Link to={`/dashboard/payment/${appo._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link> }
+                                    {(appo.price && appo.paid) && <span className='text-success'>Paid</span>}
+
+                                    </td>
                             </tr> )
                         }
 

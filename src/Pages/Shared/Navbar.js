@@ -40,9 +40,9 @@ const Navbar = () =>
                  </label>
             
 
-            <ul tabindex="0" class="dropdown-content rounded-box w-32 font-bold bg-accent   text-white mx-auto text-right">
-    <li>
-    <a  onClick={() => signOutFun()}>SIGN OUT</a>
+            <ul tabindex="0" class="dropdown-content rounded text-xl bg-accent w-28 text-white">
+    <li className=' mx-auto' onClick={() => signOutFun()}>
+    SIGN OUT
     </li>
     
   </ul>
