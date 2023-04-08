@@ -27,7 +27,7 @@ const BookingModal = ( { selected, booking, setBooking,refetch } ) =>
         }
 
 
-        fetch( 'http://localhost:5000/booking', {
+        fetch( 'https://fair-leotard-crow.cyclic.app/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

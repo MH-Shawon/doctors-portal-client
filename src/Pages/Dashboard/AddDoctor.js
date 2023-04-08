@@ -8,7 +8,7 @@ import Loading from '../Shared/Loading/Loading';
 const AddDoctor = () =>
 {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const { data: services, isLoading } = useQuery( 'services', () => fetch( 'http://localhost:5000/service' ).then( res => res.json() )
+    const { data: services, isLoading } = useQuery( 'services', () => fetch( 'https://fair-leotard-crow.cyclic.app/service' ).then( res => res.json() )
     );
 
     const imageStorageKey = 'c577856be5b8c03054a37bce85fd5576'
@@ -38,7 +38,7 @@ const AddDoctor = () =>
 
                     }
                     
-                    fetch( 'http://localhost:5000/doctor', {
+                    fetch( 'https://fair-leotard-crow.cyclic.app/doctor', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

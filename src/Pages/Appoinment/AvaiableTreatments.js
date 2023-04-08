@@ -12,7 +12,7 @@ const AvaiableTreatments = ( { selected } ) =>{
 
     const formattedDate = format( selected, 'PP' );
     
-    const {data: treatments, isLoading,refetch} = useQuery(['available',formattedDate],()=>fetch(`http://localhost:5000/availble?date=${formattedDate}`)
+    const {data: treatments, isLoading,refetch} = useQuery(['available',formattedDate],()=>fetch(`https://fair-leotard-crow.cyclic.app/availble?date=${formattedDate}`)
     .then(res=>res.json())
     )
 

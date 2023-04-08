@@ -10,14 +10,15 @@ const stripePromise = loadStripe( 'pk_test_51MqKGoCCiF9xmTvyyhaI20lttQRycwrTJ53X
 
 const Payment = () =>
 {
-    const { id } = useParams()
-    const url = `http://localhost:5000/booking/${ id}`;
-    const { data: appointment, isLoading } = useQuery( [ 'booking', id ], () => fetch( url, {
+    const { id } = useParams();
+    const url = `https://fair-leotard-crow.cyclic.app/booking/${id}`;
+
+    const { data: appointment, isLoading } = useQuery(['booking', id], () => fetch(url, {
         method: 'GET',
         headers: {
-            'authorization': `Bearer ${ localStorage.getItem( 'accessToken' ) }`
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    } ).then( res => res.json() ) );
+    }).then(res => res.json()));
 
     if ( isLoading )
     {
@@ -28,7 +29,7 @@ const Payment = () =>
 
             <div class="card w-50 max-w-md bg-base-100 shadow-xl my-16">
                 <div class="card-body">
-                    <p className='text-success'>Hello,{appointment.patientName}</p>
+                    <p className='text-success'>Hello,{appointment?.patientName}</p>
                     <h2 class="card-title"> Please pay for <span className='text-pink-500'>{appointment.treatment}</span></h2>
                     <p>We will see you on <span className='text-orange-500'>{appointment.date}</span> at {appointment.slot}</p>
                     <p>Please pay: ${appointment.price}</p>

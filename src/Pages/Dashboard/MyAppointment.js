@@ -13,7 +13,7 @@ const MyAppointment = () =>
     {
         if ( user )
         {
-            fetch( `http://localhost:5000/booking?patient=${ user.email }`,{
+            fetch( `https://fair-leotard-crow.cyclic.app/booking?patient=${ user.email }`,{
                 method:'GET',
                 headers:{
                     'authorization':`Bearer ${localStorage.getItem('accessToken')}`
